@@ -3,7 +3,6 @@ let counterEl = document.getElementById('counter');
 const increment = document.getElementById('plus');
 const decrement = document.getElementById('minus')
 const pauseButton = document.getElementById('pause');
-//let form = document.getElementById('comment-form')
 let number = 0;
 
 let interval;
@@ -11,7 +10,7 @@ createInterval();
 function createInterval() {
   interval = setInterval(() => {
     counterEl.innerText = number++;
-    if (number > 100) {
+    if (number > 1000) {
       clearInterval(interval);
     }
   }, 1000);
@@ -46,26 +45,43 @@ pauseButton.addEventListener('click', function () {
 });
 const form = document.querySelector('form')
 
-console.log('form', form)
-//const submit = document.querySelector('#submit');
-//console.log(submit)
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  
-  createComments(e.target.comment-input.value)
+  createComments(e.target.comment.value)
 })
 
 function createComments(comment) {
-  alert('hello')
+ 
   let p = document.createElement('p');
   p.textContent = comment;
   document.querySelector('#list').appendChild(p);
 }
 
-// const likeButton = document.getElementById('heart');
-//  likeButton.addEventListener('click', function(){
-//  let li = document.createElement('li')
-// })
+let spanCount = 0
+ const likeButton = document.getElementById('heart');
+  likeButton.addEventListener('click', function(){
+    
+  //  alert('hello')
+   let dataNum ; 
+    dataNum = number;
+   
+   let like = document.querySelector('.likes')
+       console.log(like)
+       if (document.getElementById(number) ){
+         let found = document.getElementById(number)
+         found.dataset.likes++
+         found.textContent = `${number} has been liked ${found.dataset.likes} times`
+         console.log(found.dataset)
+       }
+       else {
+        let li = document.createElement('li');
+        li.textContent = `${number} has been liked ${1} time`
+         li.id = number
+        li.dataset.likes = 1 
+         like.appendChild(li);
+         
+       }
+    })
 
 
 function disableButton() {
